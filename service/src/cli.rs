@@ -17,7 +17,8 @@
 ///////////////////////////////////////////////////////////////////////////////
 
 use clap::Parser;
-use robonomics_pair;
+// use robonomics_protocol;
+use robonomics_protocol::pubsubcli::PubsubCmd;
 use sc_cli::{KeySubcommand, SignCmd, VanityCmd, VerifyCmd};
 
 /// An overarching CLI command definition.
@@ -64,6 +65,14 @@ pub struct Cli {
     #[clap(long)]
     pub disable_kad: bool,
 
+    /// Pubsub listen MULTIADDRESS: i.e. /ip4/127.0.0.1/tcp/30400
+    #[clap(long)]
+    pub robonomics_network_listen: Option<String>,
+
+    /// Enable pubsub.
+    #[clap(long)]
+    pub pubsub_enable: bool,
+
     /// Polkadot relaychain arguments.
     #[clap(raw = true, conflicts_with = "relay-chain-rpc-url")]
     #[cfg(feature = "parachain")]
@@ -102,6 +111,12 @@ pub enum Subcommand {
     /// robonomics pair listen --peer peerID_to_listen
     /// robonomics pair connect --peer peerID_to_listen
     Pair(robonomics_pair::pair::PairCmd),
+
+    /// Pubsub operatins
+    /// robonomics pubsub --port peerID_to_listen
+    /// robonomics pubsub --enable 
+    Pubsub(PubsubCmd),
+    // Pubsub(robonomics_protocol::pubsub::PubsubCmd),
 
     /// Benchmarking runtime pallets.
     #[cfg(feature = "frame-benchmarking-cli")]

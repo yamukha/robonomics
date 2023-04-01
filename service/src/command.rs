@@ -17,6 +17,7 @@
 ///////////////////////////////////////////////////////////////////////////////
 
 use crate::cli::{Cli, Subcommand};
+
 #[cfg(feature = "full")]
 use crate::{chain_spec::*, service::robonomics};
 #[cfg(feature = "discovery")]
@@ -295,6 +296,20 @@ pub fn run() -> sc_cli::Result<()> {
             }
             _ => {
                 println!("pair args {:?}", cmd);
+                Ok(())
+            }
+        },
+
+        #[cfg(feature = "full")]
+        Some(Subcommand::Pubsub(cmd)) => match &cmd.subcommand {
+            Some(robonomics_protocol::pubsubcli::PubsubSubCmds::Address(cmd)) => {
+                robonomics_protocol::pubsubcli::AddressCmd::run(cmd).map_err(|e| e.to_string().into())
+            }
+            Some(robonomics_protocol::pubsubcli::PubsubSubCmds::Enable(cmd)) => {
+                robonomics_protocol::pubsubcli::EnableCmd::run(cmd).map_err(|e| e.to_string().into())
+            }
+            _ => {
+                println!("pubsub args {:?}", cmd);
                 Ok(())
             }
         },

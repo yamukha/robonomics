@@ -24,3 +24,4 @@ pub mod network;
 pub mod pubsub;
 pub mod reqres;
 pub mod subxt;
+pub mod pubsubcli;
