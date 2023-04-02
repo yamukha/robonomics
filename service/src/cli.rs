@@ -114,10 +114,9 @@ pub enum Subcommand {
 
     /// Pubsub operatins
     /// robonomics pubsub --port peerID_to_listen
-    /// robonomics pubsub --enable 
+    /// robonomics pubsub --enable
     Pubsub(PubsubCmd),
     // Pubsub(robonomics_protocol::pubsub::PubsubCmd),
-
     /// Benchmarking runtime pallets.
     #[cfg(feature = "frame-benchmarking-cli")]
     Benchmark(frame_benchmarking_cli::BenchmarkCmd),

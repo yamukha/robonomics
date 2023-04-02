@@ -43,8 +43,8 @@ pub enum PubsubSubCmds {
 
 #[derive(Debug, Parser)]
 pub struct AddressCmd {
-     /// Pubsub listen MULTIADDRESS: i.e. /ip4/127.0.0.1/tcp/30400
-    #[clap(long,value_parser)]
+    /// Pubsub listen MULTIADDRESS: i.e. /ip4/127.0.0.1/tcp/30400
+    #[clap(long, value_parser)]
     pub robonomics_network_listen: Option<String>,
 }
 
@@ -73,7 +73,6 @@ pub struct EnableCmd {
 
 impl EnableCmd {
     pub fn run(&self) -> Result<()> {
-            
         Ok(())
     }
 }
