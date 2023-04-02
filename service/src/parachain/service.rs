@@ -315,6 +315,8 @@ where
         bootnodes,
         disable_mdns,
         disable_kad,
+        true,                 // pubsub_enable: bool,
+        Some("".to_string()), // robonomics_network_listen: Option<String>,
     )
     .expect("New robonomics network layer");
 

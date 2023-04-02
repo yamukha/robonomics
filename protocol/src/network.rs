@@ -44,6 +44,8 @@ impl RobonomicsNetwork {
         bootnodes: Vec<String>,
         disable_mdns: bool,
         disable_kad: bool,
+        pubsub_enable: bool,
+        robonomics_network_listen: Option<String>,
     ) -> Result<(Arc<Self>, impl Future<Output = ()>)> {
         let mut peers = HashMap::new();
         let mut network_worker = NetworkWorker::new(
@@ -52,6 +54,8 @@ impl RobonomicsNetwork {
             pubsub.clone(),
             disable_mdns,
             disable_kad,
+            pubsub_enable,
+            robonomics_network_listen,
         )?;
 
         // Reach out to another nodes if specified

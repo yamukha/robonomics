@@ -51,6 +51,8 @@ impl NetworkWorker {
         pubsub: Arc<Pubsub>,
         disable_mdns: bool,
         disable_kad: bool,
+        pubsub_enable: bool,
+        robonomics_network_listen: Option<String>,
     ) -> Result<Self> {
         let peer_id = PeerId::from(local_key.public());
 

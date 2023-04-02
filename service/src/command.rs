@@ -133,6 +133,8 @@ pub fn run() -> sc_cli::Result<()> {
                     pubsub.clone(),
                     cli.disable_mdns,
                     cli.disable_kad,
+                    cli.pubsub_enable,
+                    cli.robonomics_network_listen,
                 )
                 .expect("Correct network worker");
 
@@ -144,9 +146,12 @@ pub fn run() -> sc_cli::Result<()> {
                     cli.disable_kad,
                 );
 
+                let adrress_to_bind = cli
+                    .robonomics_network_listen
+                    .unwrap_or("/ip4/0.0.0.0/tcp/0");
                 network_worker
                     .swarm
-                    .listen_on("/ip4/0.0.0.0/tcp/0".parse().unwrap())
+                    .listen_on(adrress_to_bind.parse().unwrap())
                     .expect("Swarm starts to listen");
 
                 thread::spawn(move || loop {
@@ -303,10 +308,12 @@ pub fn run() -> sc_cli::Result<()> {
         #[cfg(feature = "full")]
         Some(Subcommand::Pubsub(cmd)) => match &cmd.subcommand {
             Some(robonomics_protocol::pubsubcli::PubsubSubCmds::Address(cmd)) => {
-                robonomics_protocol::pubsubcli::AddressCmd::run(cmd).map_err(|e| e.to_string().into())
+                robonomics_protocol::pubsubcli::AddressCmd::run(cmd)
+                    .map_err(|e| e.to_string().into())
             }
             Some(robonomics_protocol::pubsubcli::PubsubSubCmds::Enable(cmd)) => {
-                robonomics_protocol::pubsubcli::EnableCmd::run(cmd).map_err(|e| e.to_string().into())
+                robonomics_protocol::pubsubcli::EnableCmd::run(cmd)
+                    .map_err(|e| e.to_string().into())
             }
             _ => {
                 println!("pubsub args {:?}", cmd);

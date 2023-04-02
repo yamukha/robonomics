@@ -194,6 +194,8 @@ where
         bootnodes,
         disable_mdns,
         disable_kad,
+        true,                 // pass pubsub_enable,
+        Some("".to_string()), // robonomics_network_listen: Option<String>,
     )
     .expect("New robonomics network layer");
 
