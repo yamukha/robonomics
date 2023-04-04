@@ -8952,7 +8952,6 @@ dependencies = [
  "async-trait",
  "bincode",
  "chrono",
- "clap 3.2.23",
  "derive_more",
  "futures",
  "futures-timer",
@@ -8966,7 +8965,6 @@ dependencies = [
  "serde_json",
  "sp-core 6.0.0 (registry+https://github.com/rust-lang/crates.io-index)",
  "sp-runtime 6.0.0 (registry+https://github.com/rust-lang/crates.io-index)",
- "structopt",
  "subxt",
  "tokio",
 ]

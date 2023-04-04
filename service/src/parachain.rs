@@ -70,6 +70,7 @@ pub mod alpha {
         bootnodes: Vec<String>,
         disable_mdns: bool,
         disable_kad: bool,
+        pubsub_enable: bool,
     ) -> sc_service::error::Result<sc_service::TaskManager> {
         super::service::start_node_impl::<RuntimeApi, AlphaExecutor, _, _>(
             parachain_config,
@@ -84,6 +85,7 @@ pub mod alpha {
             bootnodes,
             disable_mdns,
             disable_kad,
+            pubsub_enable,
         )
         .await
     }
@@ -121,6 +123,7 @@ pub mod main {
         bootnodes: Vec<String>,
         disable_mdns: bool,
         disable_kad: bool,
+        pubsub_enable: bool,
     ) -> sc_service::error::Result<sc_service::TaskManager> {
         super::service::start_node_impl::<RuntimeApi, MainExecutor, _, _>(
             parachain_config,
@@ -135,6 +138,7 @@ pub mod main {
             bootnodes,
             disable_mdns,
             disable_kad,
+            pubsub_enable,
         )
         .await
     }
@@ -171,6 +175,7 @@ pub mod ipci {
         bootnodes: Vec<String>,
         disable_mdns: bool,
         disable_kad: bool,
+        pubsub_enable: bool,
     ) -> sc_service::error::Result<sc_service::TaskManager> {
         super::service::start_node_impl::<RuntimeApi, IpciExecutor, _, _>(
             parachain_config,
@@ -185,6 +190,7 @@ pub mod ipci {
             bootnodes,
             disable_mdns,
             disable_kad,
+            pubsub_enable,
         )
         .await
     }

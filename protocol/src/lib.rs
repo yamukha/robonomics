@@ -22,6 +22,5 @@ pub mod ethereum;
 pub mod id;
 pub mod network;
 pub mod pubsub;
-pub mod pubsubcli;
 pub mod reqres;
 pub mod subxt;

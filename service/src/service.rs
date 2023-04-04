@@ -78,6 +78,8 @@ pub fn new_partial<Runtime, Executor>(
     bootnodes: Vec<String>,
     disable_mdns: bool,
     disable_kad: bool,
+    pubsub_enable: bool,
+    robonomics_network_listen: Option<String>,
 ) -> Result<
     sc_service::PartialComponents<
         FullClient<Runtime, Executor>,
@@ -194,8 +196,8 @@ where
         bootnodes,
         disable_mdns,
         disable_kad,
-        true,                 // pass pubsub_enable,
-        Some("".to_string()), // robonomics_network_listen: Option<String>,
+        pubsub_enable,             // pass pubsub_enable,
+        robonomics_network_listen, // robonomics_network_listen: Option<String>,
     )
     .expect("New robonomics network layer");
 
@@ -244,6 +246,8 @@ pub fn full_base<Runtime, Executor>(
     bootnodes: Vec<String>,
     disable_mdns: bool,
     disable_kad: bool,
+    pubsub_enable: bool,
+    robonomics_network_listen: Option<String>,
 ) -> Result<
     (
         TaskManager,
@@ -275,6 +279,8 @@ where
         bootnodes,
         disable_mdns,
         disable_kad,
+        pubsub_enable,
+        robonomics_network_listen,
     )?;
 
     let warp_sync = Arc::new(grandpa::warp_proof::NetworkProvider::new(
@@ -472,6 +478,8 @@ pub mod robonomics {
         bootnodes: Vec<String>,
         disable_mdns: bool,
         disable_kad: bool,
+        pubsub_enable: bool,
+        robonomics_network_listen: Option<String>,
     ) -> Result<TaskManager> {
         super::full_base::<RuntimeApi, LocalExecutor>(
             config,
@@ -480,6 +488,8 @@ pub mod robonomics {
             bootnodes,
             disable_mdns,
             disable_kad,
+            pubsub_enable,
+            robonomics_network_listen,
         )
         .map(|(task_manager, _, _, _)| task_manager)
     }

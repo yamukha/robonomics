@@ -205,6 +205,8 @@ pub async fn start_node_impl<RuntimeApi, Executor, BIQ, BIC>(
     bootnodes: Vec<String>,
     disable_mdns: bool,
     disable_kad: bool,
+    pubsub_enable: bool,
+    // robonomics_network_listen: Option<String>,
 ) -> sc_service::error::Result<TaskManager>
 where
     Executor: sc_executor::NativeExecutionDispatch + 'static,
@@ -315,7 +317,7 @@ where
         bootnodes,
         disable_mdns,
         disable_kad,
-        true,                 // pubsub_enable: bool,
+        pubsub_enable,        // pubsub_enable: bool,
         Some("".to_string()), // robonomics_network_listen: Option<String>,
     )
     .expect("New robonomics network layer");

@@ -17,8 +17,6 @@
 ///////////////////////////////////////////////////////////////////////////////
 
 use clap::Parser;
-// use robonomics_protocol;
-use robonomics_protocol::pubsubcli::PubsubCmd;
 use sc_cli::{KeySubcommand, SignCmd, VanityCmd, VerifyCmd};
 
 /// An overarching CLI command definition.
@@ -112,11 +110,6 @@ pub enum Subcommand {
     /// robonomics pair connect --peer peerID_to_listen
     Pair(robonomics_pair::pair::PairCmd),
 
-    /// Pubsub operatins
-    /// robonomics pubsub --port peerID_to_listen
-    /// robonomics pubsub --enable
-    Pubsub(PubsubCmd),
-    // Pubsub(robonomics_protocol::pubsub::PubsubCmd),
     /// Benchmarking runtime pallets.
     #[cfg(feature = "frame-benchmarking-cli")]
     Benchmark(frame_benchmarking_cli::BenchmarkCmd),
