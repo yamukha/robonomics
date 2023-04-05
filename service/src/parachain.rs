@@ -71,6 +71,7 @@ pub mod alpha {
         disable_mdns: bool,
         disable_kad: bool,
         pubsub_enable: bool,
+        robonomics_network_listen: Option<String>,
     ) -> sc_service::error::Result<sc_service::TaskManager> {
         super::service::start_node_impl::<RuntimeApi, AlphaExecutor, _, _>(
             parachain_config,
@@ -86,6 +87,7 @@ pub mod alpha {
             disable_mdns,
             disable_kad,
             pubsub_enable,
+            robonomics_network_listen,
         )
         .await
     }
@@ -124,6 +126,7 @@ pub mod main {
         disable_mdns: bool,
         disable_kad: bool,
         pubsub_enable: bool,
+        robonomics_network_listen: Option<String>,
     ) -> sc_service::error::Result<sc_service::TaskManager> {
         super::service::start_node_impl::<RuntimeApi, MainExecutor, _, _>(
             parachain_config,
@@ -139,6 +142,7 @@ pub mod main {
             disable_mdns,
             disable_kad,
             pubsub_enable,
+            robonomics_network_listen,
         )
         .await
     }
@@ -176,6 +180,7 @@ pub mod ipci {
         disable_mdns: bool,
         disable_kad: bool,
         pubsub_enable: bool,
+        robonomics_network_listen: Option<String>,
     ) -> sc_service::error::Result<sc_service::TaskManager> {
         super::service::start_node_impl::<RuntimeApi, IpciExecutor, _, _>(
             parachain_config,
@@ -191,6 +196,7 @@ pub mod ipci {
             disable_mdns,
             disable_kad,
             pubsub_enable,
+            robonomics_network_listen,
         )
         .await
     }

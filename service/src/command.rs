@@ -225,6 +225,7 @@ pub fn run() -> sc_cli::Result<()> {
                         cli.disable_mdns,
                         cli.disable_kad,
                         cli.pubsub_enable,
+                        cli.robonomics_network_listen,
                     )
                     .await
                 }),
@@ -250,6 +251,7 @@ pub fn run() -> sc_cli::Result<()> {
                         cli.disable_mdns,
                         cli.disable_kad,
                         cli.pubsub_enable,
+                        cli.robonomics_network_listen,
                     )
                     .await
                 }),
@@ -275,6 +277,7 @@ pub fn run() -> sc_cli::Result<()> {
                         cli.disable_mdns,
                         cli.disable_kad,
                         cli.pubsub_enable,
+                        cli.robonomics_network_listen,
                     )
                     .await
                 }),

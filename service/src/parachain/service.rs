@@ -206,7 +206,7 @@ pub async fn start_node_impl<RuntimeApi, Executor, BIQ, BIC>(
     disable_mdns: bool,
     disable_kad: bool,
     pubsub_enable: bool,
-    // robonomics_network_listen: Option<String>,
+    robonomics_network_listen: Option<String>,
 ) -> sc_service::error::Result<TaskManager>
 where
     Executor: sc_executor::NativeExecutionDispatch + 'static,
@@ -310,6 +310,9 @@ where
         .spawn_handle()
         .spawn("pubsub_service", None, pubsub_worker);
 
+    let network_listen_address = robonomics_network_listen;
+    let disable_pubsub = !pubsub_enable;
+
     let (robonomics_network, network_worker) = RobonomicsNetwork::new(
         local_key,
         pubsub.clone(),
@@ -317,8 +320,8 @@ where
         bootnodes,
         disable_mdns,
         disable_kad,
-        pubsub_enable,        // pubsub_enable: bool,
-        Some("".to_string()), // robonomics_network_listen: Option<String>,
+        disable_pubsub,
+        network_listen_address,
     )
     .expect("New robonomics network layer");
 

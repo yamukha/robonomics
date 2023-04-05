@@ -189,6 +189,9 @@ where
         .spawn_handle()
         .spawn("pubsub_service", None, pubsub_worker);
 
+    let network_listen_address = robonomics_network_listen;
+    let disable_pubsub = !pubsub_enable;
+
     let (robonomics_network, network_worker) = RobonomicsNetwork::new(
         local_key,
         pubsub.clone(),
@@ -196,8 +199,8 @@ where
         bootnodes,
         disable_mdns,
         disable_kad,
-        pubsub_enable,             // pass pubsub_enable,
-        robonomics_network_listen, // robonomics_network_listen: Option<String>,
+        disable_pubsub,
+        network_listen_address,
     )
     .expect("New robonomics network layer");
 
